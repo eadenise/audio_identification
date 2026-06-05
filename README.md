@@ -37,8 +37,6 @@ Import query files
 ├── audio_match.py         # File that does audio matching and extracts query fingerprings
 ├── fingerprint_build.py   # File that does processing of database audio and reference fingerprints
 ├── requirements.txt       # Python dependencies for the project
-├──plot.py                 # Plots a sample spectrogram
-├──evaluation.py           # Evaluates Results
 ├── README.md              # Project documentation 
 └── data/                  # Folder for storing audio files 
     ├── database_recordings/ # Store database audio files for fingerprinting
