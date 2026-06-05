@@ -1,0 +1,6 @@
+librosa==0.10.2
+matplotlib==3.10.1
+numpy==2.2.4
+scipy==1.17.1
+matplotlib-inline==0.1.7
+scikit-image==0.22.0
