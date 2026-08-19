@@ -51,10 +51,9 @@ Import query files
     ├── __init__.py
     ├── audio_match.py          # Matching algorithm for query audio files
     ├── config.py               # Stored variables 
-    ├── fingerprint_build.py    # Algorithm for audio processing to tf representation and hashing 
-├── build_fp.py                 # Builds the fingerprint
+    ├── fingerprint_build.py    # Algorithm for building the fingerprint
 ├── requirements.txt            # Python dependencies for the project
-├── README.md                  
+├── README.md                   # Instructions
 └── data/                       # Folder for storing audio files 
     ├── database_recordings/    # Store database audio files
     └── query_recordings/       # Store query audio files
