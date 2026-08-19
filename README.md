@@ -53,7 +53,7 @@ Import query files
     ├── config.py               # Stored variables 
     ├── fingerprint_build.py    # Algorithm for building the fingerprint
 ├── requirements.txt            # Python dependencies for the project
-├── README.md                  
+├── README.md                   # Instructions
 └── data/                       # Folder for storing audio files 
     ├── database_recordings/    # Store database audio files
     └── query_recordings/       # Store query audio files
