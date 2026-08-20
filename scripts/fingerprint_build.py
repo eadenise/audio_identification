@@ -92,8 +92,9 @@ class FingerPrintBuild:
 
     def generate_hash(self, peaks: list[tuple[int, int]]) -> list[tuple[str, int]]:
 
-        F = 10 # fan out factor/ how many points are paired with the anchor point
-        target_zone_size = 15
+        F = FAN_OUT # fan out factor/ how many points are paired with the anchor point
+        min_time_delta = 5
+        max_time_delta = 50
 
         # sort peaks by time frame
         peaks.sort(key=lambda x: x[1])
@@ -102,21 +103,30 @@ class FingerPrintBuild:
 
         for i in range(len(peaks)): 
             f_anchor, t_anchor = peaks[i]
-
-            # get next target zone size peaks after anchor
-            zone_end = min(i + 1 + target_zone_size, len(peaks))
-            targets = peaks[i + 1 : zone_end]
-
+            pairs_found = 0       
             
             # Takes on F that are closest in time to the anchor 
-            for f_target, t_target in targets[:F]:
+            for j in range(len(peaks)):
                 # minimal time distance computation
+                f_target, t_target = peaks[j]
                 delta_t = t_target - t_anchor
+
+                if delta_t > max_time_delta:
+                    break
+                
+                # Skip peaks that are too close to the anchor
+                if delta_t < min_time_delta:
+                    continue
 
                 # create hash: 32 bit unsigned int
                 hash_val = (int(f_anchor & 0x3FFF) << 18) | (int(f_target & 0x3FF) << 8) | int(delta_t & 0xFF)
                 hash_val_32 = np.uint32(hash_val)
                 fingerprints.append((int(hash_val_32), int(t_anchor)))
+
+                pairs_found += 1
+
+                if pairs_found >= F:
+                    break
 
         return fingerprints
 
