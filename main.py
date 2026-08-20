@@ -21,6 +21,8 @@ Published: 2003
 
 def fingerprintBuilder(database_path, fingerprint_path):
 
+    fingerprint_path = Path(fingerprint_path)
+
     if not os.path.exists(fingerprint_path / "db_audio.pkl"):
          
         get_audio = AudioExtract(sr=SR_DB, n_fft=N_FFT_DB, hop_length=HOP_LENGTH_DB)
@@ -74,11 +76,12 @@ def audioIdentification(query_path,fingerprint_path, output_path):
     match = AudioMatch(fingerprint_path)
 
     # Get top 3 matches
-    matched_songs = match.query_match(fingerprint_queries, threshold_hits=MAX_DB_MATCHES)
+    matched_songs = match.query_match(fingerprint_queries, max_candidates=MAX_DB_MATCHES)
 
     with open(output_path, "w") as f:
         for song, top_songs in matched_songs.items(): 
-            line = f"query: {song} " + " database: ".join(top_songs) + '\n'
+            line = f"query: {song}  database: " + " ".join(top_songs) + '\n'
+            # print(line)
             f.write(line)
 
         print(f"Results saved in {output_path}")
