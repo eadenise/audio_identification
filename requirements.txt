@@ -1,6 +1,10 @@
 librosa==0.10.2
-matplotlib==3.10.1
-numpy==2.2.4
-scipy==1.17.1
+matplotlib==3.10.9
 matplotlib-inline==0.1.7
+numpy==2.2.4
+pydub==0.25.1
 scikit-image==0.22.0
+scikit-learn==1.9.0
+scipy==1.17.1
+soundfile==0.13.1
+tqdm==4.68.1

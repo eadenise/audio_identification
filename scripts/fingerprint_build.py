@@ -92,7 +92,7 @@ class FingerPrintBuild:
 
     def generate_hash(self, peaks: list[tuple[int, int]]) -> list[tuple[str, int]]:
 
-        F = 5 # fan out factor/ how many points are paired with the anchor point
+        F = 10 # fan out factor/ how many points are paired with the anchor point
         target_zone_size = 15
 
         # sort peaks by time frame
